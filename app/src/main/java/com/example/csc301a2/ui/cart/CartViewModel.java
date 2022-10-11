@@ -1,7 +1,7 @@
 package com.example.csc301a2.ui.cart;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
@@ -9,7 +9,6 @@ import com.example.csc301a2.repositories.ICartRepo;
 import com.example.csc301a2.repositories.IProductRepo;
 
 import java.util.List;
-import java.util.Map;
 
 public class CartViewModel extends ViewModel {
 

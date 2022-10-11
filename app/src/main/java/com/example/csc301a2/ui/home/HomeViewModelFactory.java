@@ -1,8 +1,8 @@
 package com.example.csc301a2.ui.home;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.example.csc301a2.repositories.CartRepo;
 import com.example.csc301a2.repositories.ICartRepo;

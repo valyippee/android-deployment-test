@@ -1,7 +1,7 @@
 package com.example.csc301a2.adaptors;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +10,8 @@ import android.widget.TextView;
 
 import com.example.csc301a2.R;
 import com.example.csc301a2.models.CartItem;
-import com.example.csc301a2.models.Product;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CartListAdaptor extends ArrayAdapter<CartItem> {
     private final Context mContext;

@@ -1,7 +1,7 @@
 package com.example.csc301a2.ui.home;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;

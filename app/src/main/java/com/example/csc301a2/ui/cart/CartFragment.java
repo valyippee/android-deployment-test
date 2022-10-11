@@ -1,15 +1,15 @@
 package com.example.csc301a2.ui.cart;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.csc301a2.R;
 import com.example.csc301a2.adaptors.CartListAdaptor;
@@ -64,6 +64,7 @@ public class CartFragment extends Fragment {
     
     @Override
     public void onDestroyView() {
+        Log.v(TAG, "view destroyed");
         super.onDestroyView();
         binding = null;
     }

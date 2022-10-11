@@ -1,28 +1,23 @@
 package com.example.csc301a2.ui.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.csc301a2.R;
 import com.example.csc301a2.adaptors.ProductListAdaptor;
 import com.example.csc301a2.databinding.FragmentHomeBinding;
 import com.example.csc301a2.models.Product;
-import com.example.csc301a2.repositories.CartRepo;
-import com.example.csc301a2.repositories.ICartRepo;
-import com.example.csc301a2.repositories.IProductRepo;
-import com.example.csc301a2.repositories.ProductRepo;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment implements View.OnClickListener, ProductListAdaptor.ProductInterface{
@@ -70,6 +65,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Prod
 
     @Override
     public void onDestroyView() {
+        Log.v(TAG, "view destroyed");
         super.onDestroyView();
         binding = null;
     }
