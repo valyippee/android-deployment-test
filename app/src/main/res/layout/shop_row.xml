@@ -19,9 +19,9 @@
 
     <Button
         android:id="@+id/addToCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="@string/add_to_cart"
-        android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
+        android:textSize="10sp"/>
 </LinearLayout>

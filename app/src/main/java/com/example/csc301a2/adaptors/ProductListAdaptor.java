@@ -23,37 +23,18 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
         mResource = resource;
     }
 
-    private static class ViewHolder {
-        TextView name;
-        TextView price;
-    }
-
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String name = getItem(position).getName();
-        String price = String.valueOf(getItem(position).getPrice());
-
-        final View result;
-
-        //ViewHolder object
-        ViewHolder holder;
+        String price = "Price: " + String.valueOf(getItem(position).getPrice());
 
         if(convertView == null){
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
-            holder= new ViewHolder();
-            holder.name = (TextView) convertView.findViewById(R.id.productNameTextView);
-            holder.price = (TextView) convertView.findViewById(R.id.productPriceTextView);
-
-            convertView.setTag(holder);
         }
-        else{
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        holder.name.setText(name);
-        holder.price.setText(price);
+        ((TextView) convertView.findViewById(R.id.productNameTextView)).setText(name);
+        ((TextView) convertView.findViewById(R.id.productPriceTextView)).setText(price);
 
         return convertView;
 

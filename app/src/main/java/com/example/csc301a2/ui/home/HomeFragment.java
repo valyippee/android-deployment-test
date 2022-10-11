@@ -2,11 +2,11 @@ package com.example.csc301a2.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.ViewModelProvider;
@@ -21,51 +21,31 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
+    private static final String TAG = "HomeFragment";
+
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(HomeViewModel.class);
-
-
-//        Product product = new Product("Clean Architecture!!!!!!", 150.00);
-//        ArrayList<Product> products = new ArrayList<>();
-//        products.add(product);
-//
-//        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
+//        HomeViewModel homeViewModel =
+//                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        ListView productListView = (ListView) binding.productListView;
-//        productListView.setAdapter(adaptor);
 
         return binding.getRoot();
-
-
-//        View view = inflater.inflate(R.layout.fragment_home, container, false);
-//        ListView productListView = (ListView) view.findViewById(R.id.productListView);
-//        productListView.setAdapter(adaptor);
-//        binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        return view;
-
-//        binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        LayoutInflater factory = getLayoutInflater();
-//        View productPageView = factory.inflate(R.layout.fragment_home, null);
-//        ListView productListView = (ListView) productPageView.findViewById(R.id.productListView);
-//        productListView.setAdapter(adaptor);
-//
-//
-//        return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        Product product = new Product("Clean Architecture!!!!!!", 150.00);
+        Log.v(TAG, "on view created");
+        Product product1 = new Product("Clean Architecture!!!!!!", 150.00);
+        Product product2 = new Product("Book2", 50.00);
+        Product product3 = new Product("Book3", 50.00);
         ArrayList<Product> products = new ArrayList<>();
-        products.add(product);
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
 
         ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
-
 
         ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
         productListView.setAdapter(adaptor);
