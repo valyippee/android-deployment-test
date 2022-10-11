@@ -32,7 +32,7 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String name = getItem(position).getName();
-        double price = getItem(position).getPrice();
+        String price = String.valueOf(getItem(position).getPrice());
 
         final View result;
 
@@ -53,7 +53,7 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
         }
 
         holder.name.setText(name);
-        holder.price.setText((int) price);
+        holder.price.setText(price);
 
         return convertView;
 
