@@ -16,6 +16,7 @@ import com.example.csc301a2.R;
 import com.example.csc301a2.adaptors.CartListAdaptor;
 import com.example.csc301a2.adaptors.ProductListAdaptor;
 import com.example.csc301a2.databinding.FragmentCartBinding;
+import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
 
 import java.util.ArrayList;
@@ -38,12 +39,19 @@ public class CartFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.v(TAG, "on view created");
-        // TODO: get cart items
 
-//        CartListAdaptor adaptor = new CartListAdaptor(Objects.requireNonNull(getContext()), R.layout.cart_row, cartItems);
-//
-//        ListView cartListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.cartListView);
-//        cartListView.setAdapter(adaptor);
+        CartItem item1 = new CartItem("Clean Architecture!!!!!!", 150.00, 1);
+        CartItem item2 = new CartItem("book2", 50.00, 1);
+        CartItem item3 = new CartItem("book3", 50.00, 5);
+        ArrayList<CartItem> cartItems = new ArrayList<>();
+        cartItems.add(item1);
+        cartItems.add(item2);
+        cartItems.add(item3);
+
+        CartListAdaptor adaptor = new CartListAdaptor(Objects.requireNonNull(getContext()), R.layout.cart_row, cartItems);
+
+        ListView cartListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.cartListView);
+        cartListView.setAdapter(adaptor);
 
     }
 

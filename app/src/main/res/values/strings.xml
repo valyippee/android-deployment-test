@@ -5,4 +5,5 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="item1">Clean Architecture</string>
     <string name="price_with_sign">$%1s</string>
+    <string name="total_price">total price</string>
 </resources>
