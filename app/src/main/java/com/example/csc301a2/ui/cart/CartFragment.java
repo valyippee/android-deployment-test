@@ -40,22 +40,13 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.v(TAG, "on view created");
 
-        CartItem item1 = new CartItem("Clean Architecture!!!!!!", 150.00, 1);
-        CartItem item2 = new CartItem("book2", 50.00, 1);
-        CartItem item3 = new CartItem("book3", 50.00, 5);
-//        List<CartItem> cartItems = new ArrayList<>();
-//        cartItems.add(item1);
-//        cartItems.add(item2);
-//        cartItems.add(item3);
-
-
-        ListView cartListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.cartListView);
-        homeViewModel = new ViewModelProvider(this, new HomeViewModelFactory())
+        ListView cartListView = (ListView) requireView().findViewById(R.id.cartListView);
+        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModelFactory())
                 .get(HomeViewModel.class);
         List<CartItem> cartItems = homeViewModel.getCartItemsObserver().getValue();
 
-        adaptor = new CartListAdaptor(Objects.requireNonNull(getContext()), R.layout.cart_row, cartItems);
-        homeViewModel.getProductListObserver().observe(this, p -> {
+        adaptor = new CartListAdaptor(requireContext(), R.layout.cart_row, cartItems);
+        homeViewModel.getCartItemsObserver().observe(requireActivity(), p -> {
             adaptor.notifyDataSetChanged();
         });
 

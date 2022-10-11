@@ -19,19 +19,6 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
     private int mResource;
     private ProductInterface productInterface;
 
-    // TODO: Delete the useless ones at the end
-    public ProductListAdaptor(@NonNull Context context, int resource) {
-        super(context, resource);
-        mContext = context;
-        mResource = resource;
-    }
-
-    public ProductListAdaptor(@NonNull Context context, int resource, List<Product> objects) {
-        super(context, resource, objects);
-        mContext = context;
-        mResource = resource;
-    }
-
     public ProductListAdaptor(@NonNull Context context, int resource, List<Product> objects, ProductInterface productInterface) {
         super(context, resource, objects);
         mContext = context;
@@ -55,15 +42,10 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
         b.setOnClickListener(view -> productInterface.addProductToCart(name));
 
         return convertView;
-
     }
-
 
     public interface ProductInterface {
-        void addProduct(String name, double price);
         void addProductToCart(String productName);
     }
-
-
 
 }

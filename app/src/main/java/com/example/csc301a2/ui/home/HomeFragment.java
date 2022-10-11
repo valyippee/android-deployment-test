@@ -20,47 +20,29 @@ import com.example.csc301a2.models.Product;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HomeFragment extends Fragment implements View.OnClickListener, ProductListAdaptor.ProductInterface{
+public class HomeFragment extends Fragment implements ProductListAdaptor.ProductInterface{
 
     private static final String TAG = "HomeFragment";
 
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
-    private Button b;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.v(TAG, "on view created");
-        Product product1 = new Product("Clean Architecture!!!!!!", 150.00);
-        Product product2 = new Product("Book2", 50.00);
-        Product product3 = new Product("Book3", 50.00);
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-
-        ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
-
-         homeViewModel = new ViewModelProvider(this, new HomeViewModelFactory())
-                 .get(HomeViewModel.class);
-        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, homeViewModel.getProductListObserver().getValue(), this);
-         homeViewModel.getProductListObserver().observe(this, p -> {
+        ListView productListView = (ListView) requireView().findViewById(R.id.productListView);
+        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModelFactory())
+                .get(HomeViewModel.class);
+        ProductListAdaptor adaptor = new ProductListAdaptor(requireContext(), R.layout.shop_row, homeViewModel.getProductListObserver().getValue(), this);
+         homeViewModel.getProductListObserver().observe(requireActivity(), p -> {
              adaptor.notifyDataSetChanged();
          });
         productListView.setAdapter(adaptor);
-
-//        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
-
-
-//        ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
-//        productListView.setAdapter(adaptor);
-
     }
 
     @Override
@@ -68,22 +50,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Prod
         Log.v(TAG, "view destroyed");
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.addToCartButton:
-                System.out.println("123");
-                break;
-            default:
-                System.out.print("321");
-        }
-    }
-
-    @Override
-    public void addProduct(String name, double price) {
-        homeViewModel.addProduct();
     }
 
     @Override
