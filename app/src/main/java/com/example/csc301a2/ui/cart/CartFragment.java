@@ -1,31 +1,50 @@
 package com.example.csc301a2.ui.cart;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.ViewModelProvider;
 
+import com.example.csc301a2.R;
+import com.example.csc301a2.adaptors.CartListAdaptor;
+import com.example.csc301a2.adaptors.ProductListAdaptor;
 import com.example.csc301a2.databinding.FragmentCartBinding;
+import com.example.csc301a2.models.Product;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class CartFragment extends Fragment {
+
+    private static final String TAG = "CartFragment";
 
     private FragmentCartBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CartViewModel dashboardViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(CartViewModel.class);
+//        CartViewModel dashboardViewModel =
+//                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(CartViewModel.class);
 
         binding = FragmentCartBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        return binding.getRoot();
+    }
 
-        final TextView textView = binding.textCart;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.v(TAG, "on view created");
+        // TODO: get cart items
+
+//        CartListAdaptor adaptor = new CartListAdaptor(Objects.requireNonNull(getContext()), R.layout.cart_row, cartItems);
+//
+//        ListView cartListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.cartListView);
+//        cartListView.setAdapter(adaptor);
+
     }
 
     @Override

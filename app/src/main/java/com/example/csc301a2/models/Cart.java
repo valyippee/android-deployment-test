@@ -6,22 +6,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Cart {
-    private Map<Product, Integer> inventory;
+    private Map<Product, CartItem> inventory;
 
     public Cart() {
         inventory = new LinkedHashMap<>();
     }
 
-    public int addProduct(Product product) {
+    public void addProduct(Product product) {
         if (inventory.containsKey(product)) {
-            inventory.put(product, inventory.get(product) + 1);
+            CartItem item = inventory.get(product);
+            assert item != null;
+            item.setQuantity(item.getQuantity() + 1);
         } else {
-            inventory.put(product, 0);
+            inventory.put(product, new CartItem(product.getName(), product.getPrice(), 1));
         }
-        return inventory.get(product);
     }
 
-    public Map<Product, Integer> getInventory() {
+    public Map<Product, CartItem> getInventory() {
         return inventory;
     }
 
@@ -29,7 +30,9 @@ public class Cart {
         if (newQuantity == 0) {
             inventory.remove(product);
         } else {
-            inventory.put(product, newQuantity);
+            CartItem item = inventory.get(product);
+            assert item != null;
+            item.setQuantity(newQuantity);
         }
     }
 }

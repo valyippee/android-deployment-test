@@ -3,9 +3,6 @@ package com.example.csc301a2.repositories;
 import com.example.csc301a2.models.Cart;
 import com.example.csc301a2.models.Product;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class CartRepo implements ICartRepo {
 
     private final Cart cart;
@@ -20,8 +17,8 @@ public class CartRepo implements ICartRepo {
     }
 
     @Override
-    public int addProduct(Product product) {
-        return cart.addProduct(product);
+    public void addProduct(Product product) {
+        cart.addProduct(product);
     }
 
     @Override

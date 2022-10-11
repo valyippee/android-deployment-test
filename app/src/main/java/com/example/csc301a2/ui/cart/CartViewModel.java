@@ -3,6 +3,7 @@ package com.example.csc301a2.ui.cart;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
 import com.example.csc301a2.repositories.ICartRepo;
 import com.example.csc301a2.repositories.IProductRepo;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 public class CartViewModel extends ViewModel {
 
-    private final MutableLiveData<Map<Product, Integer>> cartInfo;
+    private final MutableLiveData<Map<Product, CartItem>> cartInfo;
     private final ICartRepo cartRepo;
     private final IProductRepo productRepo;
 
@@ -21,12 +22,12 @@ public class CartViewModel extends ViewModel {
         cartInfo = new MutableLiveData<>();
     }
 
-    public MutableLiveData<Map<Product, Integer>> getCartInfoObserver() {
+    public MutableLiveData<Map<Product, CartItem>> getCartInfoObserver() {
         return cartInfo;
     }
 
     public void loadCartInfo() {
-        Map<Product, Integer> cart = cartRepo.getCart().getInventory();
+        Map<Product, CartItem> cart = cartRepo.getCart().getInventory();
         if (cart.size() > 0) {
             cartInfo.setValue(cart);
         } else {
