@@ -9,7 +9,7 @@ import java.util.Map;
 public class CheckoutPage {
     public double calculatePrice(Cart cart) {
         double totalPrice = 0.0;
-        Map<Product, CartItem> m = cart.getInventory();
+        Map<Product, CartItem> m = cart.getCart();
         for (Map.Entry<Product, CartItem> entry : m.entrySet()) {
             double price = entry.getKey().getPrice();
             int count = entry.getValue().getQuantity();

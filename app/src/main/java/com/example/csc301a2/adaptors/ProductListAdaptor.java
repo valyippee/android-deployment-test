@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.csc301a2.R;
@@ -15,13 +16,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListAdaptor extends ArrayAdapter<Product> {
-    private final Context mContext;
-    private final int mResource;
+    private Context mContext;
+    private int mResource;
+    private ProductInterface productInterface;
+
+    // TODO: Delete the useless ones at the end
+    public ProductListAdaptor(@NonNull Context context, int resource) {
+        super(context, resource);
+        mContext = context;
+        mResource = resource;
+    }
 
     public ProductListAdaptor(@NonNull Context context, int resource, List<Product> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+    }
+
+    public ProductListAdaptor(@NonNull Context context, int resource, List<Product> objects, ProductInterface productInterface) {
+        super(context, resource, objects);
+        mContext = context;
+        mResource = resource;
+        this.productInterface = productInterface;
     }
 
     @NonNull
@@ -36,10 +52,19 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
         }
         ((TextView) convertView.findViewById(R.id.productNameTextView)).setText(name);
         ((TextView) convertView.findViewById(R.id.productPriceTextView)).setText(price);
+        Button b = convertView.findViewById(R.id.addToCartButton);
+        b.setOnClickListener(view -> productInterface.addProductToCart(name));
 
         return convertView;
 
     }
+
+
+    public interface ProductInterface {
+        void addProduct(String name, double price);
+        void addProductToCart(String productName);
+    }
+
 
 
 }

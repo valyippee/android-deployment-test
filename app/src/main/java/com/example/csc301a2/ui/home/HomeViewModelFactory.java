@@ -15,6 +15,7 @@ public class HomeViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         IProductRepo productRepo = new ProductRepo();
         ICartRepo cartRepo = new CartRepo();
+        System.out.println("New model");
         return (T) new HomeViewModel(productRepo, cartRepo);
     }
 }

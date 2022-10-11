@@ -13,13 +13,14 @@ import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CartListAdaptor extends ArrayAdapter<CartItem> {
     private final Context mContext;
     private final int mResource;
 
-    public CartListAdaptor(@NonNull Context context, int resource, ArrayList<CartItem> objects) {
+    public CartListAdaptor(@NonNull Context context, int resource, List<CartItem> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

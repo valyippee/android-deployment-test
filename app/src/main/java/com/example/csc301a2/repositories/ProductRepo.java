@@ -27,4 +27,12 @@ public class ProductRepo implements IProductRepo {
         }
         return null;
     }
+
+    @Override
+    public void addProduct() {
+        products.add(new Product("NEW PRODUCT", 0));
+        System.out.println("ADDED NEW PRODUCT");
+
+    }
+
 }

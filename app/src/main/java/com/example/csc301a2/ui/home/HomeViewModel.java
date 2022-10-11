@@ -3,15 +3,17 @@ package com.example.csc301a2.ui.home;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
 import com.example.csc301a2.repositories.ICartRepo;
 import com.example.csc301a2.repositories.IProductRepo;
-import com.example.csc301a2.repositories.ProductRepo;
+
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> currentProducts;
+    private MutableLiveData<List<CartItem>> cartItems;
     private final IProductRepo productRepo;
     private final ICartRepo cartRepo;
 
@@ -37,10 +39,41 @@ public class HomeViewModel extends ViewModel {
         }
     }
 
+    public MutableLiveData<List<CartItem>> getCartItemsObserver() {
+        if (cartItems == null) {
+            cartItems = new MutableLiveData<>();
+        }
+        loadCartItems();
+        System.out.println(cartItems.getValue());
+        return cartItems;
+    }
+
+    public void loadCartItems() {
+        List<CartItem> cart = cartRepo.getCartItems();
+//        if (cart.size() > 0) {
+
+            cartItems.setValue(cart);
+//        }
+//        else {
+//            cartItems.setValue(null);
+//        }
+    }
+
+    public void changeQuantity(String productName, int newQuantity) {
+        Product product = productRepo.getProductByName(productName);
+        cartRepo.changeQuantityForProduct(product, newQuantity);
+        loadCartItems();
+    }
+
+
     public void addToCart(String productName) {
         Product product = productRepo.getProductByName(productName);
         cartRepo.addProduct(product);
     }
 
+    public void addProduct() {
+        productRepo.addProduct();
+        loadProducts();
+    }
 
 }

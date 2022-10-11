@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -24,12 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener, ProductListAdaptor.ProductInterface{
 
     private static final String TAG = "HomeFragment";
 
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
+    private Button b;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,15 +50,15 @@ public class HomeFragment extends Fragment {
         products.add(product2);
         products.add(product3);
 
+        ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
+
          homeViewModel = new ViewModelProvider(this, new HomeViewModelFactory())
                  .get(HomeViewModel.class);
+        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, homeViewModel.getProductListObserver().getValue(), this);
          homeViewModel.getProductListObserver().observe(this, p -> {
-             ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, p);
-
-
-             ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
-             productListView.setAdapter(adaptor);
+             adaptor.notifyDataSetChanged();
          });
+        productListView.setAdapter(adaptor);
 
 //        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
 
@@ -70,5 +72,26 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.addToCartButton:
+                System.out.println("123");
+                break;
+            default:
+                System.out.print("321");
+        }
+    }
+
+    @Override
+    public void addProduct(String name, double price) {
+        homeViewModel.addProduct();
+    }
+
+    @Override
+    public void addProductToCart(String productName) {
+        homeViewModel.addToCart(productName);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.csc301a2.models;
 
-import android.os.Build;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,7 +20,7 @@ public class Cart {
         }
     }
 
-    public Map<Product, CartItem> getInventory() {
+    public Map<Product, CartItem> getCart() {
         return inventory;
     }
 
