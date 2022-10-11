@@ -16,7 +16,7 @@ public class CartRepo implements ICartRepo {
 
     @Override
     public Cart getCart() {
-        return null;
+        return cart;
     }
 
     @Override

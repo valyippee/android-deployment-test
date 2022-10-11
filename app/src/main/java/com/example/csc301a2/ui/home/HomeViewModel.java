@@ -5,16 +5,17 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.csc301a2.models.Product;
 import com.example.csc301a2.repositories.ICartRepo;
+import com.example.csc301a2.repositories.IProductRepo;
 import com.example.csc301a2.repositories.ProductRepo;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> currentProducts;
-    private final ProductRepo productRepo;
+    private final IProductRepo productRepo;
     private final ICartRepo cartRepo;
 
-    public HomeViewModel(ProductRepo productRepo, ICartRepo cartRepo) {
+    public HomeViewModel(IProductRepo productRepo, ICartRepo cartRepo) {
         this.productRepo = productRepo;
         this.cartRepo = cartRepo;
     }

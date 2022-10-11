@@ -12,12 +12,13 @@ import com.example.csc301a2.R;
 import com.example.csc301a2.models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductListAdaptor extends ArrayAdapter<Product> {
     private Context mContext;
     private int mResource;
 
-    public ProductListAdaptor(@NonNull Context context, int resource, ArrayList<Product> objects) {
+    public ProductListAdaptor(@NonNull Context context, int resource, List<Product> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

@@ -15,8 +15,13 @@ import com.example.csc301a2.R;
 import com.example.csc301a2.adaptors.ProductListAdaptor;
 import com.example.csc301a2.databinding.FragmentHomeBinding;
 import com.example.csc301a2.models.Product;
+import com.example.csc301a2.repositories.CartRepo;
+import com.example.csc301a2.repositories.ICartRepo;
+import com.example.csc301a2.repositories.IProductRepo;
+import com.example.csc301a2.repositories.ProductRepo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
@@ -24,12 +29,10 @@ public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
 
     private FragmentHomeBinding binding;
+    private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        HomeViewModel homeViewModel =
-//                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
@@ -45,10 +48,21 @@ public class HomeFragment extends Fragment {
         products.add(product2);
         products.add(product3);
 
-        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
+         homeViewModel = new ViewModelProvider(this, new HomeViewModelFactory())
+                 .get(HomeViewModel.class);
+         homeViewModel.getProductListObserver().observe(this, p -> {
+             ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, p);
 
-        ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
-        productListView.setAdapter(adaptor);
+
+             ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
+             productListView.setAdapter(adaptor);
+         });
+
+//        ProductListAdaptor adaptor = new ProductListAdaptor(Objects.requireNonNull(getContext()), R.layout.shop_row, products);
+
+
+//        ListView productListView = (ListView) Objects.requireNonNull(getView()).findViewById(R.id.productListView);
+//        productListView.setAdapter(adaptor);
 
     }
 
