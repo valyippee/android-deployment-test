@@ -27,8 +27,8 @@ public class CartListAdaptor extends ArrayAdapter<CartItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String name = getItem(position).getName();
-        String price = "Price: " + String.valueOf(getItem(position).getPrice());
-        String quantity = String.valueOf(getItem(position).getQuantity());
+        String price = "Price: $" + String.valueOf(getItem(position).getPrice());
+        String quantity = "Qty: " + String.valueOf(getItem(position).getQuantity());
 
         if(convertView == null){
             LayoutInflater inflater = LayoutInflater.from(mContext);

@@ -30,7 +30,7 @@ public class ProductListAdaptor extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String name = getItem(position).getName();
-        String price = "Price: " + String.valueOf(getItem(position).getPrice());
+        String price = "Price: $" + String.valueOf(getItem(position).getPrice());
 
         if(convertView == null){
             LayoutInflater inflater = LayoutInflater.from(mContext);

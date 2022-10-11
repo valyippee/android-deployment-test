@@ -33,4 +33,8 @@ public class Cart {
             item.setQuantity(newQuantity);
         }
     }
+
+    public void clearCart() {
+        inventory.clear();
+    }
 }

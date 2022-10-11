@@ -29,7 +29,6 @@ public class CartRepo implements ICartRepo {
         return items;
     }
 
-
     @Override
     public void addProduct(Product product) {
         cart.addProduct(product);
@@ -38,6 +37,11 @@ public class CartRepo implements ICartRepo {
     @Override
     public void changeQuantityForProduct(Product product, int newQuantity) {
         cart.changeQuantityForProduct(product, newQuantity);
+    }
+
+    @Override
+    public void clearCart() {
+        cart.clearCart();
     }
 
 }

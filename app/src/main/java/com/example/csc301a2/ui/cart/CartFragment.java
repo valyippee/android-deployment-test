@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,7 +21,6 @@ import com.example.csc301a2.ui.home.HomeViewModel;
 import com.example.csc301a2.ui.home.HomeViewModelFactory;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CartFragment extends Fragment {
 
@@ -33,6 +33,14 @@ public class CartFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCartBinding.inflate(inflater, container, false);
+        binding.checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.clearCart();
+                // TODO: show a thank you for order alert
+                // and go back to home page
+            }
+        });
         return binding.getRoot();
     }
 
@@ -51,6 +59,12 @@ public class CartFragment extends Fragment {
         });
 
         cartListView.setAdapter(adaptor);
+
+        String totalPrice = "$" + homeViewModel.getTotalPrice();
+        String totalPriceWithTax = "$" + homeViewModel.getTotalPriceWithTax();
+
+        binding.totalPriceField.setText(totalPrice);
+        binding.totalPriceWithTaxField.setText(totalPriceWithTax);
     }
     
     @Override

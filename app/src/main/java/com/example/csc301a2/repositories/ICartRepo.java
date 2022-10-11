@@ -11,4 +11,5 @@ public interface ICartRepo {
     List<CartItem> getCartItems();
     void addProduct(Product product);
     void changeQuantityForProduct(Product product, int newQuantity);
+    void clearCart();
 }

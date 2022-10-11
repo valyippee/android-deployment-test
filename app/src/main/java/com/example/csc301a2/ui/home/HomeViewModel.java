@@ -7,7 +7,9 @@ import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
 import com.example.csc301a2.repositories.ICartRepo;
 import com.example.csc301a2.repositories.IProductRepo;
+import com.example.csc301a2.usecases.CheckoutPage;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
@@ -16,10 +18,12 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<List<CartItem>> cartItems;
     private final IProductRepo productRepo;
     private final ICartRepo cartRepo;
+    private final CheckoutPage checkoutPage;
 
     public HomeViewModel(IProductRepo productRepo, ICartRepo cartRepo) {
         this.productRepo = productRepo;
         this.cartRepo = cartRepo;
+        this.checkoutPage = new CheckoutPage();
     }
 
     public MutableLiveData<List<Product>> getProductListObserver() {
@@ -50,13 +54,7 @@ public class HomeViewModel extends ViewModel {
 
     public void loadCartItems() {
         List<CartItem> cart = cartRepo.getCartItems();
-//        if (cart.size() > 0) {
-
-            cartItems.setValue(cart);
-//        }
-//        else {
-//            cartItems.setValue(null);
-//        }
+        cartItems.setValue(cart);
     }
 
     public void changeQuantity(String productName, int newQuantity) {
@@ -71,9 +69,17 @@ public class HomeViewModel extends ViewModel {
         cartRepo.addProduct(product);
     }
 
-    public void addProduct() {
-        productRepo.addProduct();
-        loadProducts();
+    public String getTotalPrice() {
+        return new DecimalFormat("#.##")
+                .format(checkoutPage.calculatePrice(cartRepo.getCart()));
     }
 
+    public String getTotalPriceWithTax() {
+        return new DecimalFormat("#.##")
+                .format(checkoutPage.calculatePriceWithTax(cartRepo.getCart()));
+    }
+
+    public void clearCart() {
+        cartRepo.clearCart();
+    }
 }

@@ -15,10 +15,10 @@ public class CheckoutPage {
             int count = entry.getValue().getQuantity();
             totalPrice += price * count;
         }
-        return calculateTax(totalPrice);
+        return totalPrice;
     }
 
-    private double calculateTax(double price) {
-        return price * 1.13;
+    public double calculatePriceWithTax(Cart cart) {
+        return calculatePrice(cart) * 1.13;
     }
 }
