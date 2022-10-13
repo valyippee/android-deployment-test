@@ -1,7 +1,8 @@
 package com.example.csc301a2;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import com.example.csc301a2.models.Cart;
 import com.example.csc301a2.models.Product;
@@ -14,6 +15,6 @@ public class CartUnitTest {
         c.addProduct(p);
         assertTrue(c.getCart().size() > 0);
         c.clearCart();
-        assertTrue(c.getCart().size() == 0);
+        assertEquals(0, c.getCart().size());
     }
 }
