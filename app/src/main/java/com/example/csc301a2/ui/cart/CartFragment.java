@@ -19,7 +19,6 @@ import com.example.csc301a2.databinding.FragmentCartBinding;
 import com.example.csc301a2.models.CartItem;
 
 import com.example.csc301a2.ui.home.HomeViewModel;
-import com.example.csc301a2.ui.home.HomeViewModelFactory;
 
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class CartFragment extends Fragment {
         Log.v(TAG, "on view created");
 
         ListView cartListView = (ListView) requireView().findViewById(R.id.cartListView);
-        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModelFactory())
+        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModel.HomeViewModelFactory())
                 .get(HomeViewModel.class);
         List<CartItem> cartItems = homeViewModel.getCartItemsObserver().getValue();
 

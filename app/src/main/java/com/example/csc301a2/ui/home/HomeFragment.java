@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment implements ProductListAdaptor.Product
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.v(TAG, "on view created");
         ListView productListView = (ListView) requireView().findViewById(R.id.productListView);
-        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModelFactory())
+        homeViewModel = new ViewModelProvider(requireActivity(), new HomeViewModel.HomeViewModelFactory())
                 .get(HomeViewModel.class);
         ProductListAdaptor adaptor = new ProductListAdaptor(requireContext(), R.layout.shop_row, homeViewModel.getProductListObserver().getValue(), this);
          homeViewModel.getProductListObserver().observe(requireActivity(), p -> {

@@ -2,22 +2,24 @@ package com.example.csc301a2.ui.home;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.csc301a2.models.CartItem;
 import com.example.csc301a2.models.Product;
+import com.example.csc301a2.repositories.CartRepo;
 import com.example.csc301a2.repositories.ICartRepo;
 import com.example.csc301a2.repositories.IProductRepo;
+import com.example.csc301a2.repositories.ProductRepo;
 import com.example.csc301a2.usecases.CheckoutPage;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-
-    private static final String TAG = "HomeViewModel";
 
     private MutableLiveData<List<Product>> currentProducts;
     private MutableLiveData<List<CartItem>> cartItems;
@@ -90,5 +92,19 @@ public class HomeViewModel extends ViewModel {
     public void clearCart() {
         cartRepo.clearCart();
         loadCartItems();
+    }
+
+    public static class HomeViewModelFactory implements ViewModelProvider.Factory {
+
+        private static final String TAG = "HomeViewModelFactory";
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            IProductRepo productRepo = new ProductRepo();
+            ICartRepo cartRepo = new CartRepo();
+            Log.v(TAG, "new model created");
+            return (T) new HomeViewModel(productRepo, cartRepo);
+        }
     }
 }
