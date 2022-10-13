@@ -25,5 +25,5 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
-        android:textSize="10sp"/>
+        android:textSize="15sp"/>
 </LinearLayout>

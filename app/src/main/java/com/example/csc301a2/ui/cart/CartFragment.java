@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.csc301a2.MainActivity;
 import com.example.csc301a2.R;
 import com.example.csc301a2.adaptors.CartListAdaptor;
 import com.example.csc301a2.databinding.FragmentCartBinding;
@@ -36,9 +37,9 @@ public class CartFragment extends Fragment {
         binding.checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clearCart();
-                // TODO: show a thank you for order alert
-                // and go back to home page
+                homeViewModel.clearCart();
+                // go back to home page
+                ((MainActivity) getActivity()).switchToHome();
             }
         });
         return binding.getRoot();
@@ -72,10 +73,5 @@ public class CartFragment extends Fragment {
         Log.v(TAG, "view destroyed");
         super.onDestroyView();
         binding = null;
-    }
-
-    public void clearCart() {
-        homeViewModel.clearCart();
-        adaptor.notifyDataSetChanged();
     }
 }
