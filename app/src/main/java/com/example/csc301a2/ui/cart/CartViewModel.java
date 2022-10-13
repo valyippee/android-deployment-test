@@ -28,9 +28,7 @@ public class CartViewModel extends ViewModel {
 
     public void loadCartInfo() {
         List<CartItem> cart = cartRepo.getCartItems();
-        if (cart.size() > 0) {
             cartInfo.setValue(cart);
-        }
 //        else {
 //            cartInfo.setValue(null);
 //        }

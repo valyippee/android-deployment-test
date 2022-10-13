@@ -36,7 +36,7 @@ public class CartFragment extends Fragment {
         binding.checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeViewModel.clearCart();
+                clearCart();
                 // TODO: show a thank you for order alert
                 // and go back to home page
             }
@@ -72,5 +72,10 @@ public class CartFragment extends Fragment {
         Log.v(TAG, "view destroyed");
         super.onDestroyView();
         binding = null;
+    }
+
+    public void clearCart() {
+        homeViewModel.clearCart();
+        adaptor.notifyDataSetChanged();
     }
 }

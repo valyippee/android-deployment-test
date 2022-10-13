@@ -46,9 +46,8 @@ public class HomeViewModel extends ViewModel {
     public MutableLiveData<List<CartItem>> getCartItemsObserver() {
         if (cartItems == null) {
             cartItems = new MutableLiveData<>();
+            loadCartItems();
         }
-        loadCartItems();
-        System.out.println(cartItems.getValue());
         return cartItems;
     }
 
@@ -81,5 +80,6 @@ public class HomeViewModel extends ViewModel {
 
     public void clearCart() {
         cartRepo.clearCart();
+        loadCartItems();
     }
 }

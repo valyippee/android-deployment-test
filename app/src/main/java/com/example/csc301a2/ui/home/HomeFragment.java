@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.csc301a2.R;
+import com.example.csc301a2.adaptors.CartListAdaptor;
 import com.example.csc301a2.adaptors.ProductListAdaptor;
 import com.example.csc301a2.databinding.FragmentHomeBinding;
 import com.example.csc301a2.models.Product;
@@ -20,7 +21,7 @@ import com.example.csc301a2.models.Product;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HomeFragment extends Fragment implements ProductListAdaptor.ProductInterface{
+public class HomeFragment extends Fragment implements ProductListAdaptor.ProductInterface {
 
     private static final String TAG = "HomeFragment";
 
@@ -54,6 +55,8 @@ public class HomeFragment extends Fragment implements ProductListAdaptor.Product
 
     @Override
     public void addProductToCart(String productName) {
+        Log.v(TAG, "adding " + productName);
         homeViewModel.addToCart(productName);
     }
+
 }
