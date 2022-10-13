@@ -7,5 +7,4 @@ import java.util.ArrayList;
 public interface IProductRepo {
     ArrayList<Product> getAllProducts();
     Product getProductByName(String name);
-    void addProduct();
 }

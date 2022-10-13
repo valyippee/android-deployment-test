@@ -10,7 +10,9 @@ public class ProductRepo implements IProductRepo {
     public ProductRepo() {
         products = new ArrayList<>();
         products.add(new Product("Calculator", 12.00));
-        products.add(new Product("Shelf", 449.10));
+        products.add(new Product("Shelf", 100.00));
+        products.add(new Product("Book", 25.00));
+        products.add(new Product("Pen", 2.50));
     }
 
     @Override
@@ -27,12 +29,4 @@ public class ProductRepo implements IProductRepo {
         }
         return null;
     }
-
-    @Override
-    public void addProduct() {
-        products.add(new Product("NEW PRODUCT", 0));
-        System.out.println("ADDED NEW PRODUCT");
-
-    }
-
 }
