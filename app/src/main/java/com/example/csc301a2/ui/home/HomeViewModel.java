@@ -2,6 +2,7 @@ package com.example.csc301a2.ui.home;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -30,7 +31,7 @@ public class HomeViewModel extends ViewModel {
         this.checkoutPage = new CheckoutPage();
     }
 
-    public MutableLiveData<List<Product>> getProductListObserver() {
+    public LiveData<List<Product>> getProductListObserver() {
         if (currentProducts == null) {
             currentProducts = new MutableLiveData<>();
         }
@@ -47,7 +48,7 @@ public class HomeViewModel extends ViewModel {
         }
     }
 
-    public MutableLiveData<List<CartItem>> getCartItemsObserver() {
+    public LiveData<List<CartItem>> getCartItemsObserver() {
         if (cartItems == null) {
             cartItems = new MutableLiveData<>();
         }
@@ -57,7 +58,11 @@ public class HomeViewModel extends ViewModel {
 
     public void loadCartItems() {
         List<CartItem> cart = cartRepo.getCartItems();
-        cartItems.setValue(cart);
+        if (cartItems.getValue() == null) {
+            cartItems.setValue(cart);
+        }
+        cartItems.getValue().clear();
+        cartItems.getValue().addAll(cart);
     }
 
     public void changeQuantity(String productName, int newQuantity) {

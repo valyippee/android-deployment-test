@@ -24,7 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Products:" />
+            android:text="Products:"
+            android:layout_marginHorizontal="15dp"/>
 
         <ListView
             android:id="@+id/cartListView"
@@ -33,7 +34,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"
             android:divider="@android:color/transparent"
-            android:dividerHeight="20.0sp" />
+            android:dividerHeight="20.0sp"
+            android:layout_marginHorizontal="15dp" />
 
     </FrameLayout>
 
@@ -56,7 +58,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Price: " />
+                android:text="Total Price: "
+                android:layout_marginHorizontal="15dp"/>
 
             <TextView
                 android:id="@+id/totalPriceField"
@@ -74,7 +77,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Price after tax: " />
+                android:text="Total Price after tax: "
+                android:layout_marginHorizontal="15dp" />
 
             <TextView
                 android:id="@+id/totalPriceWithTaxField"
@@ -93,5 +97,6 @@
         android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        android:layout_marginHorizontal="15dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
