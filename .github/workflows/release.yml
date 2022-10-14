@@ -28,8 +28,8 @@ jobs:
       - name: Generate version.txt for Hub release
         run: ./gradlew generateVersionTxt
       - name: Releasing using Hub
-        uses: kyze8439690/action-release-releaseapk@master
+        uses: valley-fordham/action-release-releaseapk@master
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           APP_FOLDER: app
-#          RELEASE_TITLE: New Build
+          RELEASE_TITLE: New Build
