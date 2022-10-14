@@ -25,18 +25,26 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 
-      - name: Create Tag
-        id: create_tag
-        uses: jaywcjlove/create-tag-action@main
+      - name: Delete previous release
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
-          test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+          delete_release: true
+          tag_name: v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+#      - name: Create Tag
+#        id: create_tag
+#        uses: jaywcjlove/create-tag-action@main
+#        with:
+#          test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
       - name: Create release and upload apk
         uses: underwindfall/create-release-with-debugapk@v2.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        if: steps.create_tag.outputs.successful
+#        if: steps.create_tag.outputs.successful
         with:
-          tag_name: ${{ steps.create_tag.outputs.version }}
+          tag_name: v1.0.0
           asset_path: app/build/outputs/apk/debug/app-debug.apk
           asset_name: Example.apk
           asset_content_type: application/zip
