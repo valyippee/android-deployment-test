@@ -2,11 +2,8 @@ name: Build and Release
 
 on:
  push:
-   branches:
-     - main
    tags:
-     - "v*"
-     - "D*"
+     - "*"
  workflow_dispatch:
 
 jobs:
@@ -42,23 +39,14 @@ jobs:
        uses: actions/download-artifact@v1
        with:
          name: apk
-     - name: Get tag name
-       run: |
-         echo ${GITHUB_REF##*}
-         if ['${{ github.ref_type }}' == 'tag']
-         then
-           echo "TAG_NAME=${GITHUB_REF##*}" >> $GITHUB_ENV
-         else
-           echo "TAG_NAME=${{ github.run_number }}" >> $GITHUB_ENV
-         fi
      - name: Create Release
        id: create_release
        uses: actions/create-release@v1
        env:
          GITHUB_TOKEN: ${{ secrets.TOKEN }}
        with:
-         tag_name: ${{ env.TAG_NAME }}
-         release_name: My Party Album ${{ env.TAG_NAME }}
+         tag_name: ${GITHUB_REF##*}
+         release_name: My Party Album ${GITHUB_REF##*}
      - name: Upload Release APK
        id: upload_release_asset
        uses: actions/upload-release-asset@v1.0.1
