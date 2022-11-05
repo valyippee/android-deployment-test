@@ -15,9 +15,9 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v2.4.0
      - name: Set execution flag for gradlew
-       run: chmod +x gradlew
+       run: chmod +x ./gradlew
      - name: Build APK
-       run: bash gradlew assembleDebug --stacktrace
+       run: bash ./gradlew assembleDebug --stacktrace
      - name: Upload APK
        uses: actions/upload-artifact@v1
        with:
