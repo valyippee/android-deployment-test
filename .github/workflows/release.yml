@@ -47,8 +47,8 @@ jobs:
        env:
          GITHUB_TOKEN: ${{ secrets.TOKEN }}
        with:
-         tag_name: ${{ GITHUB_REF##*/ }}
-         release_name: My Party Album ${{ GITHUB_REF##*/ }}
+         tag_name: ${ GITHUB_REF##*/ }
+         release_name: My Party Album ${ GITHUB_REF##*/ }
      - name: Upload Release APK
        id: upload_release_asset
        uses: actions/upload-release-asset@v1.0.1
