@@ -12,11 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Create an incremental release
-      uses: aurestic/incrementarl-create-release@master
-      with:
-        flag_branch: true # look for latest tag
-        prev_tag: 'v'
+    - name: Bump version and push tag if necessary
+      uses: anothrNick/github-tag-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        WITH_V: true
