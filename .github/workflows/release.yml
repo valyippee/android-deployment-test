@@ -3,9 +3,10 @@ name: Build and Release
 on:
  push:
    branches:
-     - test-deploy
+     - main
    tags:
      - "v*"
+     - "D*"
  workflow_dispatch:
 
 jobs:
