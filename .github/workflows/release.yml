@@ -41,27 +41,14 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: apk
-      - name: Generate release tag
-          uses: amitsingh-007/next-release-tag@v1.0.0
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get tag name
-          run: |
-            echo ${GITHUB_REF##*}
-            if ['${{ github.ref_type }}' == 'tag']
-            then
-              echo "TAG_NAME=${GITHUB_REF##*}" >> $GITHUB_ENV
-            else
-              echo "TAG_NAME=${{ github.run_number }}" >> $GITHUB_ENV
-            fi
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: $TAG_NAME
-          release_name: My Party Album $TAG_NAME
+          tag_name: ${{ github.ref }}
+          release_name: My Party Album ${{ github.ref }}
       - name: Upload Release APK
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
