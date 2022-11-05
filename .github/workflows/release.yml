@@ -44,7 +44,7 @@ jobs:
      - name: Get tag name
        run: |
          echo ${GITHUB_REF##*}
-         if ${{ github.ref_type }} == 'tag'
+         if '${{ github.ref_type }}' == 'tag'
          then
            echo "TAG_NAME=${GITHUB_REF##*}" >> $GITHUB_ENV
          else
